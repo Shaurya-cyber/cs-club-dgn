@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Downers Grove North - Computer Science Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a1016;   
+      --bg2: #0e1318;
+      --bg3: #141b22;
+      --accent: #52045c;
+      --accent2: #7b61ff;
+      --text: #e8edf2;
+      --muted: #6b7a8d;
+      --border: rgba(0,229,255,0.12);
+      --card: rgba(255,255,255,0.03);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(9,12,16,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--text); }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--bg) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      font-weight: 700 !important;
+      transition: opacity 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.85; color: var(--bg) !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -10%;
+      left: 20%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-glow2 {
+      position: absolute;
+      top: 30%;
+      right: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(123,97,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 1.75rem;
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    .hero-actions {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .hero-stats {
+      margin-top: 5rem;
+      display: flex;
+      gap: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 1s forwards;
+    }
+
+    .stat-item { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 2rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 6rem 4rem; position: relative; }
+    .section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 540px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .value-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .value-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+    .value-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .value-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+
+    .value-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── EVENTS ── */
+    #events { background: var(--bg); }
+
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .event-row {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.5rem 2rem;
+      background: var(--card);
+      transition: background 0.2s;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .event-row:last-child { border-bottom: none; }
+    .event-row:hover { background: rgba(0,229,255,0.04); }
+
+    .event-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .event-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .event-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .event-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      border: 1px solid;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .badge-upcoming { border-color: var(--accent); color: var(--accent); }
+    .badge-recurring { border-color: var(--accent2); color: var(--accent2); }
+    .badge-open { border-color: #2ecc71; color: #2ecc71; }
+
+    /* ── OFFICERS ── */
+    #officers {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .officers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .officer-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .officer-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+    .officer-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      margin: 0 auto 1rem;
+      font-weight: 800;
+      color: var(--bg);
+    }
+
+    .officer-name { font-weight: 700; font-size: 1rem; }
+    .officer-role { font-size: 0.78rem; color: var(--accent); font-family: 'Space Mono', monospace; margin-top: 0.3rem; }
+    .officer-grade { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ── JOIN ── */
+    #join {
+      background: var(--bg);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #join h2 { max-width: 600px; }
+    #join .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
+
+    .join-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 3rem;
+    }
+
+    .join-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: left;
+      transition: border-color 0.3s;
+    }
+
+    .join-card:hover { border-color: var(--accent); }
+
+    .join-step {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .join-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .join-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .footer-logo span { color: var(--muted); }
+
+    footer p {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      #hero, section { padding: 5rem 1.5rem 3rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .join-cards { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .event-row { grid-template-columns: 80px 1fr; }
+      .event-badge { display: none; }
+      .hero-stats { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">CS<span>Club_</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#officers">Officers</a></li>
+    <li><a href="#join" class="nav-cta">Join Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-tag">Downers Grove North High School</div>
+  <h1>Build. <em>Code.</em><br>Innovate.</h1>
+  <p class="hero-sub">The CS Club is where curious minds come together to explore the world of computer science — from web development to AI, competitive coding, and everything in between.</p>
+  <div class="hero-actions">
+    <a href="#join" class="btn btn-primary">Join the Club</a>
+    <a href="#events" class="btn btn-outline">See Events</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">20+</span>
+      <span class="stat-label">Active Members</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">36+</span>
+      <span class="stat-label">Meetings per Year</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Competitions</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="section-tag">// About Us</div>
+      <h2>More than just a club</h2>
+      <p class="section-sub">We're a community of students passionate about technology. Whether you're a total beginner or an experienced coder, there's a place for you here. We meet every week to learn, build projects, and compete.</p>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;">
+        📅 &nbsp;Meetings: <strong style="color:var(--text)">Mornings: 7:45–8:10AM & Afternoons: 3:25–4:00PM</strong><br>
+        📍 &nbsp;Location: <strong style="color:var(--text)">Room 308</strong><br>
+        ✉️ &nbsp;Sponser: <strong style="color:var(--text)">Mrs. Johnwick</strong>
+      </p>
+    </div>
+    <div class="about-right reveal">
+      <div class="value-card">
+        <div class="value-icon">💻</div>
+        <h3>Coding Projects</h3>
+        <p>Work on real apps, games, and tools with teammates.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🏆</div>
+        <h3>Competitions</h3>
+        <p>ACSL, USACO, local hackathons and more.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3>Community</h3>
+        <p>Peer learning, mentorship, and networking with local tech orgs.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🚀</div>
+        <h3>Guest Speakers</h3>
+        <p>Industry professionals share their journey and insights.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="section-tag reveal">// Events & Schedule</div>
+  <h2 class="reveal">What's happening</h2>
+  <p class="section-sub reveal">From weekly workshops to annual competitions, there's always something going on.</p>
+
+  <div class="events-list reveal">
+    <div class="event-row">
+      <div class="event-date">Sept 10</div>
+      <div>
+        <div class="event-title">Kickoff Meeting & Intro to CS Club</div>
+        <div class="event-desc">Meet the officers, learn what we're about, sign up for projects.</div>
+      </div>
+      <span class="event-badge badge-upcoming">Upcoming</span>
+    </div>
+    <div class="event-row">
+      <div class="event-date">Every Tue</div>
+      <div>
+        <div class="event-title">Weekly Meeting</div>
+        <div class="event-desc">Weekly workshops, project work sessions, and Q&As.</div>
+      </div>
+      <span class="event-badge badge-recurring">Recurring</span>
+    </div>
+    <div class="event-row">
+      <div class="event-date">Oct 15</div>
+      <div>
+        <div class="event-title">ACSL Competition Prep</div>
+        <div class="event-desc">Practice rounds and study sessions for the ACSL contest.</div>
+      </div>
+      <span class="event-badge badge-upcoming">Upcoming</span>
+    </div>
+    <div class="event-row">
+      <div class="event-date">Nov 8</div>
+      <div>
+        <div class="event-title">Fall Hackathon</div>
+        <div class="event-desc">24-hour build challenge — form teams, pick a prompt, ship something cool.</div>
+      </div>
+      <span class="event-badge badge-open">Open to All</span>
+    </div>
+    <div class="event-row">
+      <div class="event-date">Jan 20</div>
+      <div>
+        <div class="event-title">Guest Speaker: Software Engineering at [Company]</div>
+        <div class="event-desc">A local engineer shares their path from high school to tech career.</div>
+      </div>
+      <span class="event-badge badge-upcoming">Upcoming</span>
+    </div>
+    <div class="event-row">
+      <div class="event-date">Apr 5</div>
+      <div>
+        <div class="event-title">End-of-Year Project Showcase</div>
+        <div class="event-desc">Members demo their projects to the school and invited guests.</div>
+      </div>
+      <span class="event-badge badge-upcoming">Upcoming</span>
+    </div>
+  </div>
+</section>
+
+<!-- OFFICERS -->
+<section id="officers">
+  <div class="section-tag reveal">// Leadership</div>
+  <h2 class="reveal">Meet the officers</h2>
+  <p class="section-sub reveal">Your go-to people for questions, ideas, and club info.</p>
+
+  <div class="officers-grid reveal">
+    <div class="officer-card">
+      <div class="officer-avatar">Co-P</div>
+      <div class="officer-name">[Shaurya Shah]</div>
+      <div class="officer-role">Co-President</div>
+      <div class="officer-grade">12th Grade</div>
+    </div>
+    <div class="officer-card">
+      <div class="officer-avatar">Co-P</div>
+      <div class="officer-name">[Sarvesh Ganesh]</div>
+      <div class="officer-role">Co-President</div>
+      <div class="officer-grade">11th Grade</div>
+    </div>
+    <div class="officer-card">
+      <div class="officer-avatar">Co-P</div>
+      <div class="officer-name">[Leah Achilles]</div>
+      <div class="officer-role">Co-President</div>
+      <div class="officer-grade">11th Grade</div>
+    </div>
+    <div class="officer-card">
+      <div class="officer-avatar">V.P</div>
+      <div class="officer-name">[Cristian Padinjath]</div>
+      <div class="officer-role">Vice President</div>
+      <div class="officer-grade">11th Grade</div>
+    </div>
+    <div class="officer-card">
+      <div class="officer-avatar">D.O</div>
+      <div class="officer-name">[Rituraj Paul]</div>
+      <div class="officer-role">Director of Operations</div>
+      <div class="officer-grade">10th Grade</div>
+    </div>
+    <div class="officer-card">
+      <div class="officer-avatar">D.C.D</div>
+      <div class="officer-name">[Ty Nguyen]</div>
+      <div class="officer-role">Director of Development</div>
+      <div class="officer-grade">11th Grade</div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+  <div class="section-tag reveal">// Get Involved</div>
+  <h2 class="reveal">Ready to join?</h2>
+  <p class="section-sub reveal">Membership is free and open to all DGN students. No experience needed — just curiosity.</p>
+
+  <div class="join-cards reveal">
+    <div class="join-card">
+      <div class="join-step">Step 01</div>
+      <h3>Show Up</h3>
+      <p>Come to any [Weekday] meeting in Room 308. First meeting is always open — no sign-up needed.</p>
+    </div>
+    <div class="join-card">
+      <div class="join-step">Step 02</div>
+      <h3>Sign the Roster</h3>
+      <p>Add your name and email to our member list to get announcements and event reminders.</p>
+    </div>
+    <div class="join-card">
+      <div class="join-step">Step 03</div>
+      <h3>Join our Google Classroom</h3>
+      <p>Get access to our member Google Classroom for resources, project channels, and announcements.</p>
+    </div>
+  </div>
+
+  <a href="mailto:csclub.dgn@gmail.com" class="btn btn-primary">Contact Us</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CS<span>Club_ &mdash; Downers Grove North</span></div>
+  <p>© 2024–2025 CS Club. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
