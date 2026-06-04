@@ -44,30 +44,42 @@
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 200;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 4rem;
+      padding: 0.5rem 2rem;
       background: rgba(9,12,16,0.85);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
-      font-family: 'Space Mono', monospace;
-      font-size: 1rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      text-decoration: none;
+      order:0;
+      grid-column: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .nav-logo span { color: var(--text); }
 
     nav ul {
+      grid-column: 3;
       list-style: none;
       display: flex;
       gap: 2.5rem;
+      margin-left: auto;
+    }
+
+    .ham-menu {
+      display: none;
+      grid-column: 1;
+      height: 40px;
+      width: 40px;
+      position: relative;
+      cursor: pointer;
+      z-index: 300;
+
     }
 
     nav ul a {
@@ -93,6 +105,88 @@
 
     .nav-cta:hover { opacity: 0.85; color: var(--bg) !important; }
 
+    /* ── OVERLAY (for offscreen menu) ── */
+    .menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 140;   /* just below the offscreen menu */
+    }
+
+  .menu-overlay.active {
+    display: block; 
+    }
+    /* ── OFFSCREEN MENU (for mobile) ── */
+    .offscreen-menu {
+      position: fixed;
+      top: 0;
+      left: -100%px;
+      height: 100vh;
+      width: 100%;
+      max-width: 320px;
+      background: rgba(10,16,22,0.97);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      transition: left 0.3s ease;
+      z-index: 150;
+    }
+
+    .off-screen-menu.active { left: 0; }
+
+    .offscreen-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      ;
+    }
+
+    .offscreen-menu ul a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .offscreen-menu ul a:hover { color: var(--accent); }
+
+    .ham-menu span {
+      height: 5px;
+      width: 100%;
+      background: #36013f;
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      border-radius: 25px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.3s ease;
+
+    }
+
+    .ham-menu span:nth-child(1) { top: 25%; }
+
+    .ham-menu span:nth-child(3) { top: 75%; }
+
+    .ham-menu.active span:nth-child(1) {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .ham-menu.active span:nth-child(2) { opacity: 0; }
+
+    .ham-menu.active span:nth-child(3) {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
@@ -495,8 +589,15 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
+      .offscreen-menu {
+        display: flex;
+        left: -100%;
+      }
+      nav { display: grid; grid-template-columns: 40px 1fr 40 px; padding: 0.5rem 1.5rem; }
+      .ham-menu { grid-column: 1; display: block; }
+      .nav-logo { grid-column: 2; display: flex; justify-content: center; }
       nav ul { display: none; }
+      .offscreen-menu.active { left: 0; }
       #hero, section { padding: 5rem 1.5rem 3rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .join-cards { grid-template-columns: 1fr; }
@@ -508,9 +609,27 @@
   </style>
 </head>
 <body>
+  <!-- OVERLAY -->
+  <div class="overlay"></div>
+  <!-- OFF SCREEN MENU -->
+  <div class="offscreen-menu">
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#officers">Officers</a></li>
+      <li><a href="#join">Join Us</a></li>
+    </ul>
+  </div>
 
-<!-- NAV -->
+  <!-- NAV -->
 <nav>
+  <div class="ham-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
   <a href="#hero" class="nav-logo">
   <img src="clublogotransparent.png" alt="CS Club Logo" style="height: 80px; opacity: 0.9; filter: drop-shadow(0 0 4px rgba(82,4,92,0.8));">
 </a>
@@ -738,6 +857,34 @@
   }, { threshold: 0.1 });
 
   reveals.forEach(el => observer.observe(el));
+
+  // Hamburger menu toggle
+  const hamMenu = document.querySelector('.ham-menu');
+  const offscreenMenu = document.querySelector('.offscreen-menu');
+  const menuOverlay = document.querySelector('.menu-overlay');
+
+  hamMenu.addEventListener('click', () => {
+    hamMenu.classList.toggle('active');
+    offscreenMenu.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+  });
+
+  // Close when clicking the dark overlay
+  menuOverlay.addEventListener('click', () => {
+    hamMenu.classList.remove('active');
+    offscreenMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+  });
+
+  // Close when clicking any menu link
+  offscreenMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamMenu.classList.remove('active');
+      offscreenMenu.classList.remove('active');
+      menuOverlay.classList.remove('active');
+    });
+  }); 
+
 </script>
 </body>
 </html>
