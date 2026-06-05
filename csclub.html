@@ -121,7 +121,7 @@
     .offscreen-menu {
       position: fixed;
       top: 0;
-      left: -100%px;
+      left: -100%;
       height: 100vh;
       width: 100%;
       max-width: 320px;
@@ -130,11 +130,12 @@
       flex-direction: column;
       align-items: center;
       gap: 2rem;
+      padding-top: 5rem;
       transition: left 0.3s ease;
-      z-index: 150;
+      z-index: 350;
     }
 
-    .off-screen-menu.active { left: 0; }
+    .offscreen-menu.active { left: 0; }
 
     .offscreen-menu ul {
       list-style: none;
@@ -610,12 +611,12 @@
 </head>
 <body>
   <!-- OVERLAY -->
-  <div class="overlay"></div>
+  <div class="menu-overlay"></div>
   <!-- OFF SCREEN MENU -->
   <div class="offscreen-menu">
     <ul>
       <li><a href="#hero">Home</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#about">About Us</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#officers">Officers</a></li>
       <li><a href="#join">Join Us</a></li>
@@ -634,7 +635,7 @@
   <img src="clublogotransparent.png" alt="CS Club Logo" style="height: 80px; opacity: 0.9; filter: drop-shadow(0 0 4px rgba(82,4,92,0.8));">
 </a>
   <ul>
-    <li><a href="#about">About</a></li>
+    <li><a href="#about">About Us</a></li>
     <li><a href="#events">Events</a></li>
     <li><a href="#officers">Officers</a></li>
     <li><a href="#join" class="nav-cta">Join Us</a></li>
@@ -649,7 +650,7 @@
 
   <div class="hero-tag">Downers Grove North High School</div>
   <h1>Build. <em>Code.</em><br>Innovate.</h1>
-  <p class="hero-sub">The CS Club is where curious minds come together to explore the world of computer science — from web development to AI, competitive coding, and everything in between.</p>
+  <p class="hero-sub">The DGN Computer Science Club is a student-led organization, where curious minds come together to explore the world of computer science. We explore web development to AI, collaborate on real-life projects, and prepare for future pathways. </p>
   <div class="hero-actions">
     <a href="#join" class="btn btn-primary">Join the Club</a>
     <a href="#events" class="btn btn-outline">See Events</a>
@@ -676,31 +677,31 @@
     <div class="reveal">
       <div class="section-tag">// About Us</div>
       <h2>More than just a club</h2>
-      <p class="section-sub">We're a community of students passionate about technology. Whether you're a total beginner or an experienced coder, there's a place for you here. We meet every week to learn, build projects, and compete.</p>
+      <p class="section-sub">We're a community of students passionate about technology. Whether you're a total beginner or an experienced coder, there's a place for you here. We meet twice a month, both mornings and afternoons, same information attend either session.</p>
       <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;">
-        📅 &nbsp;Meetings: <strong style="color:var(--text)">Mornings: 7:45–8:10AM & Afternoons: 3:25–4:00PM</strong><br>
+        📅 &nbsp;Meetings: <strong style="color:var(--text)">Mornings: 7:45–8:10AM or Afternoons: 3:25–4:00PM</strong><br>
         📍 &nbsp;Location: <strong style="color:var(--text)">Room 308</strong><br>
-        ✉️ &nbsp;Sponser: <strong style="color:var(--text)">Mrs. Johnwick [ljohnwick@csd99.org]</strong>
+        ✉️ &nbsp;Any Questions? <strong style="color:var(--text)">Email us at <a href="mailto:csclub.dgn@gmail.com">csclub.dgn@gmail.com</a>!</strong>
       </p>
     </div>
     <div class="about-right reveal">
       <div class="value-card">
         <div class="value-icon">💻</div>
-        <h3>Coding Projects</h3>
-        <p>Work on real apps, games, and tools with teammates.</p>
+        <h3>Learn Programming</h3>
+        <p>Explore Python, web development, game design, and more through hands-on activities and projects.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">🏆</div>
-        <h3>Competitions</h3>
-        <p>ACSL, USACO, local hackathons and more.</p>
+        <div class="value-icon">🧠</div>
+        <h3>Build Projects</h3>
+        <p>Create apps, games, websites, and creative coding projects you can showcase and improve over time.</p>
       </div>
       <div class="value-card">
         <div class="value-icon">🤝</div>
-        <h3>Community</h3>
-        <p>Peer learning, mentorship, and networking with local tech orgs.</p>
+        <h3>Collaborate with Peers</h3>
+        <p>Meet students who share your interest in technology, teamwork, and problem-solving.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">🚀</div>
+        <div class="value-icon">👨‍💼</div>
         <h3>Guest Speakers</h3>
         <p>Industry professionals share their journey and insights.</p>
       </div>
@@ -724,10 +725,10 @@
       <span class="event-badge badge-upcoming">Upcoming</span>
     </div>
     <div class="event-row">
-      <div class="event-date">Every Tue</div>
+      <div class="event-date">2x a month</div>
       <div>
-        <div class="event-title">Weekly Meeting</div>
-        <div class="event-desc">Weekly workshops, project work sessions, and Q&As.</div>
+        <div class="event-title">Bi-Weekly Meeting</div>
+        <div class="event-desc">Bi-Weekly workshops, project work sessions, and Q&As.</div>
       </div>
       <span class="event-badge badge-recurring">Recurring</span>
     </div>
@@ -743,7 +744,7 @@
       <div class="event-date">Nov 8</div>
       <div>
         <div class="event-title">Fall Hackathon</div>
-        <div class="event-desc">24-hour build challenge — form teams, pick a prompt, ship something cool.</div>
+        <div class="event-desc">2 week build challenge — form teams, pick a prompt, present your work, and win prizes!</div>
       </div>
       <span class="event-badge badge-open">Open to All</span>
     </div>
@@ -813,7 +814,7 @@
 
 <!-- JOIN -->
 <section id="join">
-  <div class="section-tag reveal">// Get Involved</div>
+  <div class="section-tag reveal">// Get Involved At North</div>
   <h2 class="reveal">Ready to join?</h2>
   <p class="section-sub reveal">Membership is free and open to all DGN students. No experience needed — just curiosity.</p>
 
@@ -840,7 +841,10 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">CS<span>Club &mdash; Downers Grove North</span></div>
+  <div class="footer-logo"><span><a href="#hero" class="nav-logo">
+  <img src="clublogotransparent.png" alt="CS Club Logo" style="height: 100px; opacity: 0.9; filter: drop-shadow(0 0 4px rgba(82,4,92,0.8));">
+</a>
+</div>
   <p>© 2026–2027 DGN Computer Science Club. All rights reserved.</p>
 </footer>
 
