@@ -588,8 +588,212 @@
       transform: translateY(0);
     }
 
+    /* ── TRY CODING ── */
+    #try-coding {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .try-coding-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      align-items: stretch;
+    }
+
+    /* Shared card shell */
+    .code-card,
+    .terminal-card {
+      background: #0a0d0f;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s;
+      min-height: 220px;
+    }
+
+    .code-card:hover,
+    .terminal-card:hover {
+      border-color: var(--accent);
+    }
+
+    /* Mac-style header bar */
+    .code-card-header,
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .code-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .code-dot.red    { background: #ff5f57; }
+    .code-dot.yellow { background: #febc2e; }
+    .code-dot.green  { background: #28c840; }
+
+    .code-filename {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: 0.4rem;
+}
+
+    .code-block {
+      flex: 1;
+      margin: 0;
+      padding: 1.25rem 1.5rem;
+      background: #0a0d0f;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 2;
+      color: #e8edf2;
+      overflow-x: auto;
+      white-space: pre;
+}
+
+    /* Syntax colors matching your theme */
+    .c-purple { color: #d98fff; }   /* functions like print(), input() */
+    .c-green  { color: #a8ff78; }   /* strings */
+    .c-blue   { color: #00e5ff; }   /* keywords like if, else */
+
+    /* Terminal body */
+    .terminal-body {
+      flex: 1;
+      padding: 1.25rem 1.25rem 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.9;
+      color: #a8ff78;
+      background: #0a0d0f;
+      min-height: 260px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .terminal-line { display: block; }
+    .terminal-line.muted { color: var(--muted); }
+    .terminal-line.input-line { color: #00e5ff; }
+
+    /* Run / Stop buttons */
+    .terminal-actions {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-run,
+    .btn-stop {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.45rem 1.1rem;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn-run {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-run:hover:not(:disabled) { opacity: 0.85; transform: translateY(-1px); }
+
+    .btn-stop {
+      background: transparent;
+      border: 1px solid #e74c3c;
+      color: #e74c3c;
+    }
+
+    .btn-stop:hover:not(:disabled) { background: rgba(231,76,60,0.1); }
+
+    .btn-run:disabled,
+    .btn-stop:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+}
+
+    /* Footer row */
+    .try-coding-footer {
+      display: flex;
+      flex-direction: flex-start; 
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding-top: 1.5rem;
+    }
+
+    .try-hint-label {
+      font-size: 1.2rem;
+      color: var(--text);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .try-hints {
+      font-size: 1.05rem;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .try-hints li {
+      font-size: 0.96rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .try-hints li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .try-hints code {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.05rem;
+      background: rgba(82,4,92,0.25);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      color: #d98fff;
+    }
+
+    .try-link-btn {
+      white-space: nowrap;
+      align-self: center;
+    }
+
+
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
+      .try-coding-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .try-coding-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .offscreen-menu {
         display: flex;
         left: -100%;
@@ -607,6 +811,7 @@
       .event-badge { display: none; }
       .hero-stats { gap: 2rem; }
     }
+
   </style>
 </head>
 <body>
@@ -706,6 +911,71 @@
         <p>Industry professionals share their journey and insights.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- TRY CODING -->
+<section id="">
+  <div class="section-tag reveal">//Try Coding Yourself</div>
+  <h2 class="reveal">See code in action</h2>
+  <p class="section-sub reveal">Coding is learned best through experimentation. Run the program below and see what happens — then tweak it yourself using the link.</p>
+
+  <div class="try-coding-grid reveal">
+
+    <!-- Left card: code as text -->
+<div class="code-card">
+  <div class="code-card-header">
+    <span class="code-dot red"></span>
+    <span class="code-dot yellow"></span>
+    <span class="code-dot green"></span>
+    <span class="code-filename">main.py</span>
+  </div>
+  <pre class="code-block"><code><span class="c-purple">print</span>(<span class="c-green">"Welcome to the Computer Science Club 💻"</span>)
+<span class="c-purple">print</span>(<span class="c-green">"Learning. Coding. Creating.\n"</span>)
+
+name = <span class="c-purple">input</span>(<span class="c-green">"Enter your name: "</span>)
+
+<span class="c-blue">if</span> name != <span class="c-green">""</span>:
+    <span class="c-purple">print</span>(<span class="c-green">"Welcome to the club,"</span>, name + <span class="c-green">"!"</span>)
+<span class="c-blue">else</span>:
+    <span class="c-purple">print</span>(<span class="c-green">"Welcome, future coder!"</span>)
+
+<span class="c-purple">print</span>(<span class="c-green">"\nDive In The World Of Code With Us 🚀"</span>)</code></pre>
+</div>
+
+
+    <!-- Right Card: Live Terminal  -->
+    <div class="terminal-card">
+      <div class="code-card-header">
+        <span class="code-dot red"></span>
+        <span class="code-dot yellow"> </span>
+        <span class="code-dot green"></span>
+        <span class="code-filename">Terminal</span>
+      </div>
+      <div class="terminal-body" id="terminal-output">
+        <span class="terminal-line">$ python main.py</span>
+        <span class="terminal-line muted">Click Run to execute...</span>
+      </div>
+      <div class="terminal-actions">
+        <button class="btn-run" id="run-btn" onclick="runCode()">▶ Run</button>
+        <button class="btn-stop" id="stop-btn" onclick="stopCode()" disabled>■ Stop</button>
+      </div>
+  </div>
+
+  <!-- Below cards: instructions + link -->
+  <div class="try-coding-footer reveal">
+    <div class="try-coding-hints">
+      <p class="try-hint-label">Use the link to edit and expand the code. Ideas to try:</p>
+      <ul class="try-hints">
+        <li>Change the welcome message</li>
+        <li>Add your favourite emoji to a print statement</li>
+        <li>Create your own custom slogan</li>
+        <li>Add another <code>print()</code> line</li>
+      </ul>
+    </div>
+    <a href="https://replit.com/@yourhandle/cs-club-demo" target="_blank" class="btn btn-primary try-link-btn">
+      Edit the Code &nbsp;↗
+    </a>
   </div>
 </section>
 
@@ -888,6 +1158,70 @@
       menuOverlay.classList.remove('active');
     });
   }); 
+
+  // Simulated terminal runner
+  const output = document.getElementById('terminal-output');
+  const runBtn = document.getElementById('run-btn');
+  const stopBtn = document.getElementById('stop-btn');
+
+  const programLines = [
+  { text: 'Welcome to the Computer Science Club 💻', delay: 300 },
+  { text: 'Learning. Coding. Creating.', delay: 700 },
+  { text: '', delay: 1000 },
+  { text: 'Enter your name: DGN Student', delay: 1400, cls: 'input-line' },
+  { text: 'Welcome to the club, DGN Student!', delay: 2000 },
+  { text: '', delay: 2300 },
+  { text: 'Dive In The World Of Code With Us 🚀', delay: 2700 },
+];
+
+let timers = [];
+let running = false;
+
+function runCode() {
+  if (running) return;
+  running = true;
+  runBtn.disabled = true;
+  stopBtn.disabled = false;
+
+  output.innerHTML = '<span class="terminal-line"> $ python main.py</span>';
+  
+  programLines.forEach(({text, delay, cls}) => {
+    const t = setTimeout(() => {
+      const line = document.createElement('span');
+      line.className = 'terminal-line' + (cls ? ' ' + cls : '');
+      line.textContent = text;
+      output.appendChild(line);
+      output.scrollTop(line);
+      output.scrollTop = output.scrollHeight;
+    }, delay);
+    timers.push(t);
+  });
+
+  const done = setTimeout(() => {
+    const line = document.createElement('span');
+    line.className = 'terminal-line muted';
+    line.textContent = '- Program finished -';
+    output.appendChild(line);
+    running = false;
+    runBtn.disabled = false;
+    stopBtn.disabled = true;
+    }, 3200);
+    timers.push(done);
+  }
+
+  function stopCode() {
+    timers.forEach(clearTimeout);
+    timers = [];
+    running = false;
+    runBtn.disabled = false;
+    stopBtn.disabled = true;
+    const line = document.createElement('span');
+    line.className = 'terminal-line muted';
+    line.textContent = '- Stopped -';
+    output.appendChild(line);
+  }
+
+
 
 </script>
 </body>
