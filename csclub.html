@@ -614,6 +614,7 @@
       flex-direction: column;
       transition: border-color 0.3s;
       min-height: 220px;
+      gap: 1rem;
     }
 
     .code-card:hover,
@@ -736,17 +737,21 @@
       justify-content: center;
       gap: 2rem;
       padding-top: 1.5rem;
+}
+
+    .try-coding-footer .try-hints {
+      text-align: left;
     }
 
     .try-hint-label {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: var(--text);
       font-weight: 800;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
 
     .try-hints {
-      font-size: 1.05rem;
+      font-size: 0.9rem;
       list-style: none;
       display: flex;
       flex-direction: column;
@@ -754,7 +759,7 @@
     }
 
     .try-hints li {
-      font-size: 0.96rem;
+      font-size: 0.9rem;
       color: var(--muted);
       padding-left: 1rem;
       position: relative;
@@ -769,7 +774,7 @@
 
     .try-hints code {
       font-family: 'Space Mono', monospace;
-      font-size: 1.05rem;
+      font-size: 0.9rem;
       background: rgba(82,4,92,0.25);
       padding: 0.1rem 0.35rem;
       border-radius: 3px;
@@ -779,6 +784,8 @@
     .try-link-btn {
       white-space: nowrap;
       align-self: center;
+      position: relative;
+      
     }
 
 
@@ -823,6 +830,7 @@
       <li><a href="#hero">Home</a></li>
       <li><a href="#about">About Us</a></li>
       <li><a href="#events">Events</a></li>
+      <li><a href="#trycoding">Try Coding</a></li>
       <li><a href="#officers">Officers</a></li>
       <li><a href="#join">Join Us</a></li>
     </ul>
@@ -842,6 +850,7 @@
   <ul>
     <li><a href="#about">About Us</a></li>
     <li><a href="#events">Events</a></li>
+    <li><a href="#trycoding">Try Coding</a></li>
     <li><a href="#officers">Officers</a></li>
     <li><a href="#join" class="nav-cta">Join Us</a></li>
   </ul>
@@ -915,8 +924,8 @@
 </section>
 
 <!-- TRY CODING -->
-<section id="">
-  <div class="section-tag reveal">//Try Coding Yourself</div>
+<section id="trycoding">
+  <div class="section-tag reveal">//Try Coding</div>
   <h2 class="reveal">See code in action</h2>
   <p class="section-sub reveal">Coding is learned best through experimentation. Run the program below and see what happens — then tweak it yourself using the link.</p>
 
@@ -960,12 +969,15 @@ name = <span class="c-purple">input</span>(<span class="c-green">"Enter your nam
         <button class="btn-run" id="run-btn" onclick="runCode()">▶ Run</button>
         <button class="btn-stop" id="stop-btn" onclick="stopCode()" disabled>■ Stop</button>
       </div>
-  </div>
+    </div>
+
+</div>
 
   <!-- Below cards: instructions + link -->
   <div class="try-coding-footer reveal">
     <div class="try-coding-hints">
-      <p class="try-hint-label">Use the link to edit and expand the code. Ideas to try:</p>
+      <p class="try-hint-label">Use the link to edit and expand the code.</p>
+      <p class="try-hint-label">Ideas to try:</p>
       <ul class="try-hints">
         <li>Change the welcome message</li>
         <li>Add your favourite emoji to a print statement</li>
