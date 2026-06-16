@@ -44,7 +44,7 @@
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 200;
+      z-index: 400;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -78,7 +78,7 @@
       width: 40px;
       position: relative;
       cursor: pointer;
-      z-index: 300;
+      z-index: 400;
 
     }
 
@@ -130,7 +130,7 @@
       flex-direction: column;
       align-items: center;
       gap: 2rem;
-      padding-top: 5rem;
+      padding-top: 8rem;
       transition: left 0.3s ease;
       z-index: 350;
     }
@@ -806,6 +806,11 @@
         display: flex;
         left: -100%;
       }
+
+      .ham-menu.active span {
+        background: #36013f;
+      }
+
       nav { display: grid; grid-template-columns: 40px 1fr 40 px; padding: 0.5rem 1.5rem; }
       .ham-menu { grid-column: 1; display: block; }
       .nav-logo { grid-column: 2; display: flex; justify-content: center; }
@@ -902,8 +907,8 @@
     <div class="about-right reveal">
       <div class="value-card">
         <div class="value-icon">💻</div>
-        <h3>Learn Programming</h3>
-        <p>Explore Python, web development, game design, and more through hands-on activities and projects.</p>
+        <h3>Workshops</h3>
+        <p>Hands-on tutorials for Github, Python, web development, game design, technical interview prep for internships, and resume building.</p>
       </div>
       <div class="value-card">
         <div class="value-icon">🧠</div>
@@ -1104,18 +1109,18 @@ name = <span class="c-purple">input</span>(<span class="c-green">"Enter your nam
   <div class="join-cards reveal">
     <div class="join-card">
       <div class="join-step">Step 01</div>
-      <h3>Show Up</h3>
-      <p>Come to our informational meeting in Room 308. First meeting is always open — no sign-up needed.</p>
+      <h3>Join our Google Classroom [Code: rgc46fso]</h3>
+      <p>Get access to our member Google Classroom for resources, project channels, and announcements.</p>
     </div>
     <div class="join-card">
       <div class="join-step">Step 02</div>
       <h3>Register via Infinite Campus</h3>
-      <p>Log onto Infinite Campus and register for the Computer Science Club. Free of charge. Ask your officers for help if needed.</p>
+      <p>Log in to Infinite Campus and register for the Computer Science Club. Free of charge. Ask your officers for help if needed.</p>
     </div>
     <div class="join-card">
       <div class="join-step">Step 03</div>
-      <h3>Join our Google Classroom [Code: rgc46fso]</h3>
-      <p>Get access to our member Google Classroom for resources, project channels, and announcements.</p>
+      <h3>Show Up</h3>
+      <p>Come to our informational meeting in Room 308. First meeting is always open — no sign-up needed.</p>
     </div>
   </div>
 
