@@ -161,7 +161,7 @@
     .ham-menu span {
       height: 5px;
       width: 100%;
-      background: #36013f;
+      background: var(--text);
       position: absolute;
       height: 4px;
       width: 100%;
@@ -364,7 +364,7 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 40px 1fr 40px;
       gap: 5rem;
       align-items: center;
     }
@@ -1097,6 +1097,7 @@ name = <span class="c-purple">input</span>(<span class="c-green">"Enter your nam
       <div class="officer-name">[Ty Nguyen]</div>
       <div class="officer-role">Director of Development</div>
       <div class="officer-grade">11th Grade</div>
+    </div>
   </div>
 </section>
 
@@ -1129,7 +1130,7 @@ name = <span class="c-purple">input</span>(<span class="c-green">"Enter your nam
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><span><a href="#hero" class="nav-logo">
+  <div class="footer-logo"><span><a href="#hero" class="nav-logo"></a></span></div>
   <img src="clublogotransparent.png" alt="CS Club Logo" style="height: 100px; opacity: 0.9; filter: drop-shadow(0 0 4px rgba(82,4,92,0.8));">
 </a>
 </div>
@@ -1209,7 +1210,6 @@ function runCode() {
       line.className = 'terminal-line' + (cls ? ' ' + cls : '');
       line.textContent = text;
       output.appendChild(line);
-      output.scrollTop(line);
       output.scrollTop = output.scrollHeight;
     }, delay);
     timers.push(t);
