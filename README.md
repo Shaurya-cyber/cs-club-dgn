@@ -1,4 +1,4 @@
-﻿﻿## DGN Computer Science Club — Official Website
+﻿## DGN Computer Science Club — Official Website
 
 The official club website for the **Downers Grove North High School Computer Science Club**. Built and maintained by student officers.
 
