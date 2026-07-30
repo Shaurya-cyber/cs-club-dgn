@@ -1,4 +1,4 @@
-﻿## DGN Computer Science Club — Official Website
+��﻿## DGN Computer Science Club — Official Website
 
 The official club website for the **Downers Grove North High School Computer Science Club**. Built and maintained by student officers.
 
@@ -8,7 +8,7 @@ The official club website for the **Downers Grove North High School Computer Sci
 
 ## About the Club
 
-The DGN CS Club is a student-led organization open to all DGN students — no experience required. We meet twice a month (morning and afternoon sessions, same content) and run workshops, build projects, compete in events, and host guest speakers.
+The DGN CS Club is a student-led organization open to all DGN students — no experience required. We meet twice a month (morning and afternoon sessions, same contentand run workshops, build projects, compete in events, and host guest speakers.
 
 - 📅 **Meetings:** 7:45–8:10 AM or 3:25–4:00 PM, twice a month
 - 📍 **Location:** Room 308
