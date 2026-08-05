@@ -278,6 +278,25 @@
       animation: fadeUp 0.8s 0.6s forwards;
     }
 
+    .hero-beginner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.1rem;
+    margin-top: 1.25rem;
+    border: 1px solid var(--accent);
+    border-radius: 100px;
+    background: rgba(82,4,92,0.12);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+    }
+
     .hero-actions {
       margin-top: 2.5rem;
       display: flex;
@@ -458,6 +477,39 @@
       font-size: 0.82rem;
       color: var(--muted);
       line-height: 1.6;
+    }
+    /* Changes here for purple highlight on email address */
+    .section-sub a, 
+    #about a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      transition: opacity 0.2s;
+    }
+
+    #about a:hover {
+      opacity: 0.8;
+    }
+
+    .about-email-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.7rem;
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      background: rgba(82,4,92,0.12);
+      color: var(--accent) !important;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .about-email-badge:hover {
+      opacity: 0.8;
     }
 
     /* ── TRY CODING ── */
@@ -668,7 +720,6 @@
       
     }
 
-
     /* ── EVENTS ── */
     #events { background: var(--bg); }
 
@@ -701,6 +752,15 @@
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.1em;
+    }
+
+    .event-time {
+      display: inline-block;
+      margin-top: 0.25rem;
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-transform: none;
+      letter-spacing: normal;
     }
 
     .event-title {
@@ -1077,6 +1137,13 @@
   <div class="hero-tag">Downers Grove North High School</div>
   <h1>Build. <em>Code.</em><br>Innovate.</h1>
   <p class="hero-sub">The DGN Computer Science Club is a student-led organization, where curious minds come together to explore the world of computer science. We explore web development to AI, collaborate on real-life projects, and prepare for future pathways. </p>
+  <p class="hero-beginner-badge">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2 2 7l10 5 10-5-10-5Z"/>
+    <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+    </svg>
+    No experience needed - beginners welcome
+  </p>
   <div class="hero-actions">
     <a href="#join" class="btn btn-primary">Join the Club</a>
     <a href="#events" class="btn btn-outline">See Events</a>
@@ -1106,8 +1173,8 @@
       <p class="section-sub">We're a community of students passionate about technology. Whether you're a total beginner or an experienced coder, there's a place for you here. We meet twice a month, both mornings and afternoons, same information attend either session.</p>
       <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;">
         📅 &nbsp;Meetings: <strong style="color:var(--text)">Mornings: 7:45–8:10AM or Afternoons: 3:30–4:00PM</strong><br>
-        📍 &nbsp;Location: <strong style="color:var(--text)">Room 308</strong><br>
-        ✉️ &nbsp;Any Questions? <strong style="color:var(--text)">Email us at <a href="mailto:csclub.dgn@gmail.com">csclub.dgn@gmail.com</a>!</strong>
+        📍 &nbsp;Location: <strong style="color:var(--text)">Room 308 (Mrs. Johnwick's room)— see Mrs. Johnwick for more information</strong><br>
+        ✉️ &nbsp;Any Questions? <strong style="color:var(--text)">Email us at <a href="https://mail.google.com/mail/?view=cm&fs=1&to=csclub.dgn@gmail.com" target="_blank" rel="noopener" class="about-email-badge">csclub.dgn@gmail.com</a></strong>
       </p>
     </div>
     <div class="about-right reveal">
@@ -1237,7 +1304,7 @@ name = <span class="c-purple">input</span>(<span class="c-green">"Enter your nam
 <section id="events">
   <div class="section-tag reveal">// Events & Schedule</div>
   <h2 class="reveal">What's happening</h2>
-  <p class="section-sub reveal">From weekly workshops to annual competitions, there's always something going on.</p>
+  <p class="section-sub reveal">From bi-weekly workshops to guest speaker invites, there's always something going on.</p>
 
   <div class="events-list reveal" id="events-list"></div>
 </section>
@@ -1312,7 +1379,7 @@ name = <span class="c-purple">input</span>(<span class="c-green">"Enter your nam
     </div>
   </div>
 
-  <a href="mailto:csclub.dgn@gmail.com" class="btn btn-primary">Contact Us</a>
+  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=csclub.dgn@gmail.com" target="_blank" rel="noopener" class="btn btn-primary">Contact Us</a>
 </section>
 
 <!-- FOOTER -->
@@ -1334,7 +1401,7 @@ name = <span class="c-purple">input</span>(<span class="c-green">"Enter your nam
             <path d="m22 7-10 5L2 7"/>
           </svg>
         </span>
-        <a href="mailto:csclub.dgn@gmail.com">csclub.dgn@gmail.com</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=csclub.dgn@gmail.com" target="_blank" rel="noopener">csclub.dgn@gmail.com</a>
       </li>
     <li class="footer-list-icon">
       <span class="footer-icon">
@@ -1345,7 +1412,16 @@ name = <span class="c-purple">input</span>(<span class="c-green">"Enter your nam
       </span>
       Google Classroom code: <span class="footer-code">rgc46fso</span>
       </li>
-      <li><a href="#" target="_blank">Register on Infinite Campus ↗</a></li>
+      <li class="footer-list-icon">
+      <span class="footer-icon">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"/>
+          <rect x="8" y="2" width="8" height="4" rx="1"/>
+          <path d="m9 14 2 2 4-4"/>
+        </svg>
+      </span>
+      <a href="https://communityhsd99il.infinitecampus.org/campus/portal/students/chsd99.jsp?status=login" target="_blank">Register on Infinite Campus ↗</a>
+    </li>
       <li class="footer-list-note">Room 308 · Downers Grove North High School</li>
     </ul>
   </div>
@@ -1469,11 +1545,11 @@ function runCode() {
 
   // -- EVENTS DATA --
   // Edit this array only. Each object becomes one row, rendered automatically below.
-  const events = [
-  { date: "Sept 15", title: "Kickoff Meeting & Intro to CS Club", desc: "Meet the officers, learn what we're about, sign up for projects.", badge: "upcoming" },
-  { date: "2x a month", title: "Bi-Weekly Meeting", desc: "Workshops, project work sessions, and Q&As.", badge: "recurring" },
-  { date: "TBD", title: "Guest Speaker: Software Engineer at Bosch", desc: "An industry engineer shares their day-to-day and career path.", badge: "upcoming" },
-  { date: "TBD", title: "Guest Speaker: Mr. Motti Samuel Pikelny from DGS", desc: "A look at CS pathways from a teacher and developer from Downers Grove South High School.", badge: "upcoming" },
+    const events = [
+    { date: "Sept 2", time: "7:45–8:10 AM", title: "Kickoff Meeting & Intro to CS Club", desc: "Meet the officers, learn what we're about, and get involved at North.", badge: "upcoming" },
+    { date: "2x a month", time: "AM & PM sessions", title: "Bi-Weekly Meeting", desc: "Workshops, project work sessions, and Q&As. *Meeting dates and times are yet to be decided.", badge: "recurring" },
+    { date: "TBD", time: "TBD", title: "Guest Speaker: Software Engineer at Bosch", desc: "An industry engineer shares their day-to-day and career path.", badge: "upcoming" },
+    { date: "TBD", time: "TBD", title: "Guest Speaker: Mr. Motti Samuel Pikelny from DGS", desc: "A look at CS pathways from a teacher and developer from Downers Grove South High School.", badge: "upcoming" },
   ];
 
   const badgeLabels = {
@@ -1482,21 +1558,21 @@ function runCode() {
     open: "Open to All",
   };
 
-  function renderEvents() {
-    const container = document.getElementById('events-list');
-    if (!container) return;
+function renderEvents() {
+  const container = document.getElementById('events-list');
+  if (!container) return;
 
-    container.innerHTML = events.map(event => `
+  container.innerHTML = events.map(event => `
     <div class="event-row">
-      <div class="event-date">${event.date}</div>
+      <div class="event-date">${event.date}${event.time ? `<br><span class="event-time">${event.time}</span>` : ''}</div>
       <div>
         <div class="event-title">${event.title}</div>
         <div class="event-desc">${event.desc}</div>
       </div>
-      <span class="event-badge badge-${event.badge}">${badgeLabels[events.badge] || event.badge}</span>
+      <span class="event-badge badge-${event.badge}">${badgeLabels[event.badge] || event.badge}</span>
     </div>
-    `).join('');
-  }
+  `).join('');
+}
 
   renderEvents();
 
