@@ -336,22 +336,70 @@
 
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-    .hero-stats {
-      margin-top: 5rem;
-      display: flex;
-      gap: 3rem;
+    .why-join-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-top: 4rem;
+      padding-top: 3rem;
+      margin-bottom: 0.5rem;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.9s forwards;
+    }
+
+    .why-join-subtitle {
+      font-family: 'Syne', sans-serif;
+      font-weight: 250;
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.95s forwards;
+    }
+
+    .hero-why-join {
+      margin-top: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 780px;
       opacity: 0;
       animation: fadeUp 0.8s 1s forwards;
     }
 
-    .stat-item { display: flex; flex-direction: column; }
-    .stat-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 2rem;
-      color: var(--accent);
-      font-weight: 700;
+    .why-join-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem 1.25rem 1.75rem;
+      transition: border-color 0.3s, transform 0.3s;
     }
-    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .why-join-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);  
+    }
+
+    .why-join-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.88rem;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      margin-top: 0.6rem;
+    }
+
+    .why-join-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
     /* ── SECTIONS COMMON ── */
     section { padding: 6rem 4rem; position: relative; }
@@ -362,6 +410,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       margin-bottom: 1rem;
+      margin-top: 5rem;
     }
     h2 {
       font-size: clamp(2rem, 4vw, 3rem);
@@ -440,7 +489,7 @@
       color: var(--text);
       text-transform: none;
       margin-bottom: 0.75rem;
-}
+    }
 
     .meeting-steps {
       display: grid;
@@ -1050,6 +1099,12 @@
       nav ul { display: none; }
       .offscreen-menu.active { left: 0; }
       #hero, section { padding: 5rem 1.5rem 3rem; }
+      .hero-why-join {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 3rem;
+        max-width: 100%;
+      }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .meeting-steps { grid-template-columns: 1fr; }
       .join-cards { grid-template-columns: 1fr; }
@@ -1155,18 +1210,23 @@
     <a href="#join" class="btn btn-primary">Join the Club</a>
     <a href="#events" class="btn btn-outline">See Events</a>
   </div>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <span class="stat-num">20+</span>
-      <span class="stat-label">Active Members</span>
+  <h3 class="why-join-title">Why Join?</h3>
+  <p class="why-join-subtitle">Short meetings. Real impact beyond the classroom.</p>
+  <div class="hero-why-join">
+    <div class="why-join-card">
+      <div class="why-join-icon">🌱</div>
+    <div class="why-join-tag">No Experience Required</div>
+      <p>We start from absolute scratch.</p>
+      </div>
+    <div class="why-join-card">
+      <div class="why-join-icon">📅</div>
+      <div class="why-join-tag">Flexible Schedule</div>
+      <p>Morning and afternoon options match your day.</p>
     </div>
-    <div class="stat-item">
-      <span class="stat-num">18+</span>
-      <span class="stat-label">Meetings per Year</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">2</span>
-      <span class="stat-label">Guest Speakers</span>
+    <div class="why-join-card">
+      <div class="why-join-icon">🚀</div>
+      <div class="why-join-tag">Resume Booster</div>
+      <p>Build a portfolio and leadership roles for next year.</p>
     </div>
   </div>
 </section>
@@ -1211,7 +1271,7 @@
   <div class="meeting-flow reveal">
     <div class="section-tag">// A Typical Meeting</div>
     <h3 class="meeting-flow-title">25 minutes, no wasted time</h3>
-    <p class="section-sub" style="margin-bottom: 2rem;">Short does't mean shallow - here's roughly how a meeting flows.</p>
+    <p class="section-sub" style="margin-bottom: 2rem;">Short doesn't mean shallow - here's roughly how a meeting flows.</p>
 
     <div class="meeting-steps">
       <div class="meeting-step">
