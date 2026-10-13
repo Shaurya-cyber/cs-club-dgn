@@ -2,7 +2,7 @@
 
 The official club website for the **Downers Grove North High School Computer Science Club**. Built and maintained by student officers.
 
-🌐 **Live Site:** *Pending — not yet published.*
+🌐 **Live Site:** *https://shaurya-cyber.github.io/cs-club-dgn/*
 
 **Disclaimer:** This site is created and maintained by club members. Content reflects the views of club members and has not been independently reviewed by school administration.
 
@@ -51,10 +51,10 @@ No frameworks. No dependencies. No build step — just open `index.html`.
 
 ```
 dgn-cs-club-website/
-├── index.html                 # Main (and only) page — all sections live here
-├── clublogotransparent.png    # Club logo used in nav and footer
+├── index.html                      # Main (and only) page — all sections live here
+├── website-logo-transparent.png    # Club logo used in nav and footer
 ├── LICENSE
-└── README.md                  # You are here
+└── README.md                       # You are here
 ```
 
 ---
@@ -67,7 +67,7 @@ To add, remove, or update an event, edit the `events` array near the bottom of t
 
 ```javascript
 const events = [
-  { date: "Sept 2", time: "7:45–8:10 AM", title: "Kickoff Meeting", desc: "...", badge: "upcoming" },
+  { date: "November 9", time: "7:45–8:10 AM", title: "Guest Speaker - CS Careers", desc: "...", badge: "upcoming" },
   // add more event objects here
 ];
 ```
@@ -97,7 +97,7 @@ No server or install needed either way.
 
 ## Deployment
 
-The site will be hosted on **GitHub Pages**. Deployment is currently pending setup.
+The site is hosted on **GitHub Pages**. 
 
 Once configured, the recommended workflow is: make changes on a feature branch → test locally → open a pull request → merge to `master`.
 
